@@ -1,5 +1,6 @@
 package pl.krystianzybala.rcontract.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -19,13 +20,16 @@ public class StationController {
 
     private final RestTemplate restTemplate;
 
+    @Value("${smog.stations.endpoint}")
+    private String stationEndpoint;
+
     StationController(final RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<StationDetails>> getStationsDetails(@PathVariable("id") long id) {
-        return this.restTemplate.exchange("http://localhost:9000/pjp-api/rest/station/sensors/" + id, HttpMethod.GET, null, new ParameterizedTypeReference<List<StationDetails>>() {
+        return this.restTemplate.exchange(stationEndpoint + id, HttpMethod.GET, null, new ParameterizedTypeReference<List<StationDetails>>() {
         });
     }
 }
