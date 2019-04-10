@@ -28,6 +28,5 @@ public class RemoteContractConsumerApplicationTests {
     @Test
     @Ignore
     public void test_context_test() {
-        //TODO: implement
     }
 }
