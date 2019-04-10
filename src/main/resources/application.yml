@@ -1,0 +1,3 @@
+smog:
+  stations:
+    endpoint: http://localhost:9000/pjp-api/rest/station/sensors/
